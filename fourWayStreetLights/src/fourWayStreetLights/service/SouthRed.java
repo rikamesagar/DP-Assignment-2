@@ -1,21 +1,21 @@
-public class NoCars implements StreetLightStateI{
+public class SouthRed implements StreetLightStateI{
 
 	StretLightsContext streetLightContext;
 	
-	public NoCars(StretLightsContext newStreetLightContext) {
-		this.streetLightContext = newStreetLightContext;
+	public SouthRed(StretLightsContext newStreetLightContext) {
+		this.streetLightContext = newStreetLightContext;	
 	}
-
+	
 	@Override
 	public void allowCar() {
-		System.out.println("No cars to cross the intersection");
-		streetLightContext.setState(streetLightContext.getNoCars());
+		System.out.println("Car can pass through South Signal");
+		streetLightContext.setState(streetLightContext.getSouthGreen());
 	}
 
 	@Override
 	public void blockCar() {
-		System.out.println("No cars to block at the intersection");
-		streetLightContext.setState(streetLightContext.getNoCars());
+		System.out.println("Car cannot pass through South Signal");
+		streetLightContext.setState(streetLightContext.getSouthRed());
 	}
 
 	@Override
@@ -41,6 +41,4 @@ public class NoCars implements StreetLightStateI{
 		// TODO Auto-generated method stub
 		
 	}
-
-
 }

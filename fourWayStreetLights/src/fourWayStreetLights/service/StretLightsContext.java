@@ -1,45 +1,68 @@
-public class StretLightContext{
+public class StretLightsContext{
+	StreetLightStateI northGreen;
+	StreetLightStateI northRed;
+	StreetLightStateI eastGreen;
+	StreetLightStateI eastRed;
+	StreetLightStateI southGreen;
+	StreetLightStateI southRed;
+	StreetLightStateI westGreen;
+	StreetLightStateI westRed;
 	StreetLightStateI hasCars;
 	StreetLightStateI noCars;
-	StreetLightStateI redLight;
-	StreetLightStateI greenLightNorth;
-	StreetLightStateI greenLightSouth;
-	StreetLightStateI greenLightEast;
-	StreetLightStateI greenLightWest;
 
-	StreetLightStateI currentState;
+	StreetLightStateI currentState = noCars;
+	
+	int numberOfCarsPassed = 0;
 
-	int carsCrossed;
-
-	public StreetLight(){
+	public StretLightsContext(){
+		northGreen = new NorthGreen(this);
+		northRed = new NorthRed(this);
+		eastGreen = new EastGreen(this);
+		eastRed = new EastRed(this);
+		southGreen = new SouthGreen(this);
+		southRed = new SouthRed(this);
+		westGreen = new WestGreen(this);
+		westRed = new WestRed(this);
 		hasCars = new HasCars(this);
 		noCars = new NoCars(this);
-		carsCrossed = 0;
-		if(carsCrossed >= 2){
-			currentState = redLight;
-		}
 	}
 
-	public void setStreetLightStateI(StreetLightStateI newStreetLightStateI){
-		currentState = newStreetLightStateI;
+	public void changeSouth() {
+		currentState.changeSouth();
 	}
 
-	public void changeLightForNorth(){
-		currentState.changeLightForNorth();
+	public void changeNorth() {
+		currentState.changeNorth();
 	}
-
-	public void changeLightForSouth(StreetLightStateI newStreetLightStateI){
-		currentState.changeLightForSouth();
+	
+	public void changeEast() {
+		currentState.changeEast();
 	}
-
-	public void changeLightForEast(StreetLightStateI newStreetLightStateI){
-		currentState.changeLightForEast;
+	
+	public void changeWest() {
+		currentState.changeWest();
 	}
-
-	public void changeLightforWest(StreetLightStateI StreetLightStateI){
-		currentState.changeLightForWest();
+	
+	public void blockCars() {
+		currentState.blockCar();
 	}
-
-	public int noOfCarsCrossed(){}
-
+	
+	public void allowCar() {
+		currentState.allowCar();
+	}
+	
+	void setState(StreetLightStateI state) {
+		this.currentState = state;
+	}
+	
+	public StreetLightStateI getNorthGreen(){return northGreen;}
+	public StreetLightStateI getNorthRed(){return northRed;}
+	public StreetLightStateI getSouthGreen(){return southGreen;}
+	public StreetLightStateI getSouthRed(){return southRed;}
+	public StreetLightStateI getEastGreen(){return eastGreen;}
+	public StreetLightStateI getEastRed(){return eastRed;}
+	public StreetLightStateI getWestGreen(){return westGreen;}
+	public StreetLightStateI getWestRed(){return westRed;}
+	public StreetLightStateI getHasCars(){return hasCars;}
+	public StreetLightStateI getNoCars(){return noCars;}
 }
