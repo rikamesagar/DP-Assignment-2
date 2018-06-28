@@ -1,6 +1,6 @@
 package fourWayStreetLights.util;
 
-public class MyLogger{
+public class Logger{
 
     // FIXME: Add more enum values as needed for the assignment
     public static enum DebugLevel { CONSTRUCTOR, FILE_PROCESSOR

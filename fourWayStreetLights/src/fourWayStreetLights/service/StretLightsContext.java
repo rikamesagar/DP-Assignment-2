@@ -48,7 +48,14 @@ public class StretLightsContext{
 	}
 	
 	public void allowCar() {
-		currentState.allowCar();
+		if (numberOfCarsPassed < 3) {
+			System.out.println("A Car passed through the signal");
+			numberOfCarsPassed++;
+		}
+		else {
+			System.out.println("Only 2 cars can pass through the signal");
+			numberOfCarsPassed = 0;
+		}
 	}
 	
 	void setState(StreetLightStateI state) {
@@ -65,4 +72,5 @@ public class StretLightsContext{
 	public StreetLightStateI getWestRed(){return westRed;}
 	public StreetLightStateI getHasCars(){return hasCars;}
 	public StreetLightStateI getNoCars(){return noCars;}
+	public int getNumberOfCarsPassed() {return numberOfCarsPassed;};
 }

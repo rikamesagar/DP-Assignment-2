@@ -38,7 +38,7 @@ public class WestRed implements StreetLightStateI{
 
 	@Override
 	public void changeWest() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

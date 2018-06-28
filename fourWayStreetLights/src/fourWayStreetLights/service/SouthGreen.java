@@ -8,8 +8,14 @@ public class SouthGreen implements StreetLightStateI{
 	
 	@Override
 	public void allowCar() {
-		System.out.println("Car can pass through South Signal");
-		streetLightContext.setState(streetLightContext.getSouthGreen());
+		streetLightContext.allowCar();
+		if (streetLightContext.getNumberOfCarsPassed() < 3) {
+			streetLightContext.setState(streetLightContext.getSouthGreen());
+			System.out.println("Car passed through South Signal");
+		} else {
+			System.out.println("Only 2 Cars can pass through South Signal");
+			streetLightContext.setState(streetLightContext.getSouthRed());
+		}
 	}
 
 	@Override
@@ -20,25 +26,25 @@ public class SouthGreen implements StreetLightStateI{
 
 	@Override
 	public void changeNorth() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("North Changed to Red");
+		streetLightContext.setState(streetLightContext.getNorthRed());
 	}
 
 	@Override
 	public void changeEast() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("East Changed to Red");
+		streetLightContext.setState(streetLightContext.getEastRed());
 	}
 
 	@Override
 	public void changeSouth() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("South Changed to Red");
+		streetLightContext.setState(streetLightContext.getSouthRed());
 	}
 
 	@Override
 	public void changeWest() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("West Changed to Red");
+		streetLightContext.setState(streetLightContext.getWestRed());
 	}
 }
