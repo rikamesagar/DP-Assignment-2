@@ -1,3 +1,4 @@
+package service;
 public class NoCars implements StreetLightStateI{
 
 	StretLightsContext streetLightContext;
@@ -19,6 +20,12 @@ public class NoCars implements StreetLightStateI{
 	}
 
 	@Override
+	public void changeLight() {
+		// TODO Auto-generated method stub
+		
+	}
+
+/*	@Override
 	public void changeNorth() {
 		// TODO Auto-generated method stub
 		
@@ -40,7 +47,7 @@ public class NoCars implements StreetLightStateI{
 	public void changeWest() {
 		// TODO Auto-generated method stub
 		
-	}
+	}*/
 
 
 }

@@ -1,11 +1,13 @@
+package service;
 public interface StreetLightStateI{
 
 	//void changeLightToGreen();
 	//void changeLightToRed();
-	void changeNorth();
+	/*void changeNorth();
 	void changeEast();
 	void changeSouth();
-	void changeWest();
+	void changeWest();*/
+	void changeLight();
 	void allowCar();
 	void blockCar();
 }

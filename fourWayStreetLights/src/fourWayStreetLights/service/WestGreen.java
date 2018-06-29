@@ -1,49 +1,38 @@
+package service;
 public class WestGreen implements StreetLightStateI{
 
 	StretLightsContext streetLightContext;
+	int tempCarsPassed = 0;
 	
 	public WestGreen(StretLightsContext newStreetLightContext) {
 		this.streetLightContext = newStreetLightContext;	
 	}
-
+		
 	@Override
 	public void allowCar() {
-		streetLightContext.allowCar();
 		if (streetLightContext.getNumberOfCarsPassed() < 3) {
-			streetLightContext.setState(streetLightContext.getWestGreen());
 			System.out.println("Car passed through West Signal");
+			tempCarsPassed = streetLightContext.getNumberOfCarsPassed();
+			tempCarsPassed++;
+			streetLightContext.setNumberOfCarsPassed(tempCarsPassed);
+			streetLightContext.setState(streetLightContext.getWestGreen());
 		} else {
 			System.out.println("Only 2 Cars can pass through West Signal");
-			streetLightContext.setState(streetLightContext.getWestRed());
-		}
+			streetLightContext.blockCars();
+		}		
 	}
 
 	@Override
 	public void blockCar() {
-		System.out.println("Car cannot pass through South Signal");
-		streetLightContext.setState(streetLightContext.getSouthRed());
-	}
-	@Override
-	public void changeNorth() {
-		System.out.println("North Changed to Red");
-		streetLightContext.setState(streetLightContext.getNorthRed());
+		streetLightContext.setState(streetLightContext.getWait());
 	}
 
 	@Override
-	public void changeEast() {
-		System.out.println("East Changed to Red");
+	public void changeLight() {
 		streetLightContext.setState(streetLightContext.getEastRed());
-	}
-
-	@Override
-	public void changeSouth() {
-		System.out.println("South Changed to Red");
-		streetLightContext.setState(streetLightContext.getSouthRed());
-	}
-
-	@Override
-	public void changeWest() {
-		System.out.println("West Changed to Green");
 		streetLightContext.setState(streetLightContext.getWestGreen());
-	}
+		streetLightContext.setState(streetLightContext.getNorthRed());
+		streetLightContext.setState(streetLightContext.getSouthRed());
+		streetLightContext.allowCar();
+	}	
 }

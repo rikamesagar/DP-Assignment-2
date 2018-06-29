@@ -1,3 +1,4 @@
+package service;
 
 public class HasCars implements StreetLightStateI{
 
@@ -20,6 +21,12 @@ public class HasCars implements StreetLightStateI{
 	}
 
 	@Override
+	public void changeLight() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/*@Override
 	public void changeNorth() {
 		// TODO Auto-generated method stub
 		
@@ -42,5 +49,5 @@ public class HasCars implements StreetLightStateI{
 		// TODO Auto-generated method stub
 		
 	}
-
+*/
 }

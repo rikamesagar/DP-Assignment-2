@@ -1,3 +1,4 @@
+package service;
 public class StretLightsContext{
 	StreetLightStateI northGreen;
 	StreetLightStateI northRed;
@@ -9,25 +10,26 @@ public class StretLightsContext{
 	StreetLightStateI westRed;
 	StreetLightStateI hasCars;
 	StreetLightStateI noCars;
-
+	StreetLightStateI wait;
+	
 	StreetLightStateI currentState = noCars;
 	
 	int numberOfCarsPassed = 0;
 
 	public StretLightsContext(){
 		northGreen = new NorthGreen(this);
-		northRed = new NorthRed(this);
+//		northRed = new NorthRed(this);
 		eastGreen = new EastGreen(this);
-		eastRed = new EastRed(this);
+//		eastRed = new EastRed(this);
 		southGreen = new SouthGreen(this);
-		southRed = new SouthRed(this);
+//		southRed = new SouthRed(this);
 		westGreen = new WestGreen(this);
-		westRed = new WestRed(this);
+//		westRed = new WestRed(this);
 		hasCars = new HasCars(this);
 		noCars = new NoCars(this);
 	}
 
-	public void changeSouth() {
+/*	public void changeSouth() {
 		currentState.changeSouth();
 	}
 
@@ -41,21 +43,14 @@ public class StretLightsContext{
 	
 	public void changeWest() {
 		currentState.changeWest();
-	}
+	}*/
 	
 	public void blockCars() {
 		currentState.blockCar();
 	}
 	
 	public void allowCar() {
-		if (numberOfCarsPassed < 3) {
-			System.out.println("A Car passed through the signal");
-			numberOfCarsPassed++;
-		}
-		else {
-			System.out.println("Only 2 cars can pass through the signal");
-			numberOfCarsPassed = 0;
-		}
+		currentState.allowCar();
 	}
 	
 	void setState(StreetLightStateI state) {
@@ -72,5 +67,9 @@ public class StretLightsContext{
 	public StreetLightStateI getWestRed(){return westRed;}
 	public StreetLightStateI getHasCars(){return hasCars;}
 	public StreetLightStateI getNoCars(){return noCars;}
-	public int getNumberOfCarsPassed() {return numberOfCarsPassed;};
+	public StreetLightStateI getWait(){return wait;}
+	public int getNumberOfCarsPassed() {return numberOfCarsPassed;}
+	public void setNumberOfCarsPassed(int newNumberOfCarsPassed) {this.numberOfCarsPassed = newNumberOfCarsPassed;}
+
+
 }

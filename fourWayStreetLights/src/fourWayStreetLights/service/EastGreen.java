@@ -1,6 +1,8 @@
+package service;
 public class EastGreen implements StreetLightStateI{
 
 	StretLightsContext streetLightContext;
+	int tempCarsPassed = 0;
 	
 	public EastGreen(StretLightsContext newStreetLightContext) {
 		this.streetLightContext = newStreetLightContext;	
@@ -8,44 +10,31 @@ public class EastGreen implements StreetLightStateI{
 		
 	@Override
 	public void allowCar() {
-		
-		streetLightContext.allowCar();
+		/*
+		streetLightContext.allowCar();*/
 		if (streetLightContext.getNumberOfCarsPassed() < 3) {
-			streetLightContext.setState(streetLightContext.getEastGreen());
 			System.out.println("Car passed through East Signal");
+			tempCarsPassed = streetLightContext.getNumberOfCarsPassed();
+			tempCarsPassed++;
+			streetLightContext.setNumberOfCarsPassed(tempCarsPassed);
+			streetLightContext.setState(streetLightContext.getEastGreen());
 		} else {
 			System.out.println("Only 2 Cars can pass through East Signal");
-			streetLightContext.setState(streetLightContext.getEastRed());
-		}
+			streetLightContext.blockCars();
+		}		
 	}
 
 	@Override
 	public void blockCar() {
-		System.out.println("Car cannot pass through East Signal");
-		streetLightContext.setState(streetLightContext.getEastRed());
+		streetLightContext.setState(streetLightContext.getWait());
 	}
 
 	@Override
-	public void changeNorth() {
-		System.out.println("North Changed to Red");
-		streetLightContext.setState(streetLightContext.getNorthRed());
-	}
-
-	@Override
-	public void changeEast() {
-		System.out.println("East Changed to Green");
+	public void changeLight() {
 		streetLightContext.setState(streetLightContext.getEastGreen());
-	}
-
-	@Override
-	public void changeSouth() {
-		System.out.println("South Changed to Red");
-		streetLightContext.setState(streetLightContext.getSouthRed());
-	}
-
-	@Override
-	public void changeWest() {
-		System.out.println("West Changed to Red");
 		streetLightContext.setState(streetLightContext.getWestRed());
+		streetLightContext.setState(streetLightContext.getNorthRed());
+		streetLightContext.setState(streetLightContext.getSouthRed());
+		streetLightContext.allowCar();
 	}
 }
